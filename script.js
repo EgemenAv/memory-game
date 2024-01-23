@@ -62,7 +62,7 @@ const updateGameState = (index) => {
             break;
 
         case index:
-            alert('Pick Another Card!1!!!11');
+            alert('Pick Another Card!');
             gridContainer.style.pointerEvents = 'auto'
             break;
 

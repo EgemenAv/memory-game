@@ -16,12 +16,16 @@ body{
     gap: 1rem;
     
     
-    width: 43rem;
-    height: 43rem;
+    width: 45rem;
+    height: 45rem;
     background-color: whitesmoke;
 }
 
 .grid{
+    border-radius: 10px;
+    overflow: hidden;
+    width: 10rem;
+    height: 10rem;
     border: solid 1px;
     background-color: blue;
 }
@@ -32,7 +36,9 @@ div img{
 }
 
 .scoreboard{
-    padding-left: 2rem;
+    padding: 2rem;
+    border: solid 2px;
+    border-radius: 10px;
 }
 
 .winner-container{
