@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="grid-container">     
+        </div>
+        <div class="scoreboard">
+            <p>Turn: <span class="turn"></span></p>
+            <p class="p1">Player One: <span class="score"></span></p>
+            <p class="p2">Player Two: <span class="score"></span></p>
+        </div>
+
+        <div class="hidden winner-container">
+            <h3><span class="winner"></span> Won!</h3>
+            <button class="retry" onclick="init()">Retry</button>
+        </div>
+    </div>
+    
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
