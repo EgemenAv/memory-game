@@ -1,11 +1,22 @@
 body{
     margin: 0;
-    display: flex;
-    justify-content: center;
 }
+
+header{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    color: burlywood;
+    text-shadow:    -1.5px 1.5px cornflowerblue,
+                    -3px 3px violet;
+}   
 
 .container{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
     position: relative;
 }
 
@@ -13,21 +24,46 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    gap: 1rem;
-    
+    gap: 1rem;    
     
     width: 45rem;
     height: 45rem;
     background-color: whitesmoke;
+
+    perspective: 90rem;
 }
 
 .grid{
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transition: transform 0.5s;
+    transform-style: preserve-3d;  
+}
+
+.flip{
+    transform: rotateY(0.5turn);
+}
+
+.front, .back{
+    height: 100%;
+    width: 100%;
+    border: solid 1px;
     border-radius: 10px;
     overflow: hidden;
-    width: 10rem;
-    height: 10rem;
-    border: solid 1px;
-    background-color: blue;
+
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.front{
+    background-color: burlywood;
+}
+
+.back{
+    transform: rotateY(0.5turn);
 }
 
 div img{
@@ -36,9 +72,10 @@ div img{
 }
 
 .scoreboard{
-    padding: 2rem;
+    padding: 3rem;
     border: solid 2px;
     border-radius: 10px;
+    margin-left: 2rem;
 }
 
 .winner-container{

@@ -30,10 +30,17 @@ const init = () => {
 
     for (let i = 0; i < foodArray.length; i++) {
         const card = document.createElement('div')
+        const front = document.createElement('div')
+        const back = document.createElement('div')
 
         card.classList.add('grid')
+        front.classList.add('front')
+        back.classList.add('back')
 
-        card.setAttribute('data-id', i)
+        card.appendChild(front)
+        card.appendChild(back)
+
+        card.setAttribute('data-index', i)
         
         card.addEventListener('click', (e) => reveal(e.currentTarget))
 
@@ -47,14 +54,18 @@ const init = () => {
 const reveal = (card) => {
     gridContainer.style.pointerEvents = 'none'
 
-    const index = card.getAttribute('data-id')
-        
-    card.innerHTML = `<img src="${foodArray[index].img}">` 
+    const index = card.getAttribute('data-index')
 
-    updateGameState(index)
+    const back = card.lastChild
+        
+    back.innerHTML = `<img src="${foodArray[index].img}">` 
+    
+    card.classList.add('flip')
+
+    update(index)
 }
 
-const updateGameState = (index) => {    
+const update = (index) => {    
     switch (openCardIndex) {
         case -1:
             openCardIndex = index;
@@ -68,13 +79,13 @@ const updateGameState = (index) => {
 
         default:
             setTimeout(() => {
-                changeTurn(openCardIndex, index);
+                endTurn(openCardIndex, index);        
             }, 2000);         
             break;
     }
 }
 
-const changeTurn = (indexOne, indexTwo) => {  
+const endTurn = (indexOne, indexTwo) => {  
 
     // Check if cards are of the same image
     if (foodArray[indexOne].name === foodArray[indexTwo].name) {
@@ -85,8 +96,13 @@ const changeTurn = (indexOne, indexTwo) => {
         cards[indexOne].style.visibility = 'hidden'
         cards[indexTwo].style.visibility = 'hidden'
     }else{
-        cards[indexOne].innerHTML = ''
-        cards[indexTwo].innerHTML = ''
+        setTimeout(() => {
+            cards[indexOne].lastChild.innerHTML = ''
+            cards[indexTwo].lastChild.innerHTML = ''
+        }, 600);
+
+        cards[indexOne].classList.remove('flip')
+        cards[indexTwo].classList.remove('flip')
     }
 
     // Check end game condition
@@ -101,7 +117,6 @@ const changeTurn = (indexOne, indexTwo) => {
 
     openCardIndex = -1
     p1turn = !p1turn
-
     p1turn ? turn.textContent = 'Player One' : turn.textContent = 'Player Two'
 
     gridContainer.style.pointerEvents = 'auto'
