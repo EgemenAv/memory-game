@@ -1,3 +1,9 @@
+:root{
+    --box-shadow : rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    --text-shadow : -1.2px 1.2px cornflowerblue,
+                    -2.4px 2.4px violet;
+}
+
 body{
     margin: 0;
 }
@@ -5,19 +11,55 @@ body{
 header{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    font-size: 1.4rem;
-    padding: 0.5rem;
+    font-size: 1.3rem;
+    padding: 0.2rem;
     color: burlywood;
-    text-shadow:    -1.5px 1.5px cornflowerblue,
-                    -3px 3px violet;
-}   
+    text-shadow:   var(--text-shadow);
+} 
 
 .container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.scoreboard{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: white;
+    background-color: whitesmoke;
+    padding: 0.1rem 2rem;
+    border-radius: 10px;
+    width: 40rem;
+
+    box-shadow: var(--box-shadow);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.turn-text{
+    font-size: 2rem;
+    text-shadow: var(--text-shadow);
+}
+
+.p1{
+    color: blue;
+}
+
+.p2{
+    color: red;
+}
+
+.player-turn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: burlywood;
 }
 
 .grid-container{
@@ -25,10 +67,13 @@ header{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 1rem;    
-    
-    width: 45rem;
-    height: 45rem;
+
+    width: 40rem;
+    height: 40rem;
     background-color: whitesmoke;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
 
     perspective: 90rem;
 }
@@ -50,7 +95,7 @@ header{
 .front, .back{
     height: 100%;
     width: 100%;
-    border: solid 1px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border-radius: 10px;
     overflow: hidden;
 
@@ -71,21 +116,14 @@ div img{
     height: 100%;
 }
 
-.scoreboard{
-    padding: 3rem;
-    border: solid 2px;
-    border-radius: 10px;
-    margin-left: 2rem;
-}
-
 .winner-container{
     position: absolute;
-    top: 10rem;
+    top: 12rem;
     left: 40%;
 
     background-color: whitesmoke;
-    padding: 2rem 5rem;
-    border: solid 2px;
+    padding: 3rem 6rem;
+    box-shadow: var(--box-shadow);
     text-align: center;
 }
 

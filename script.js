@@ -15,6 +15,7 @@ let openCardIndex;
 const init = () => {
     winnerContainer.classList.add('hidden')
     turn.textContent = 'Player One'
+    turn.style.color = 'blue'
     p1Score.textContent = '0'
     p2Score.textContent = '0'
     gridContainer.innerHTML = ''
@@ -48,7 +49,6 @@ const init = () => {
 
         gridContainer.append(card)
     }
-
 }
 
 const reveal = (card) => {
@@ -78,9 +78,10 @@ const update = (index) => {
             break;
 
         default:
+            //If two cards are picked
             setTimeout(() => {
                 endTurn(openCardIndex, index);        
-            }, 2000);         
+            }, 1500);         
             break;
     }
 }
@@ -89,6 +90,7 @@ const endTurn = (indexOne, indexTwo) => {
 
     // Check if cards are of the same image
     if (foodArray[indexOne].name === foodArray[indexTwo].name) {
+        //Cards are the same
         p1turn ? playerOneScore++ : playerTwoScore++
         p1Score.textContent = playerOneScore 
         p2Score.textContent = playerTwoScore
@@ -96,6 +98,7 @@ const endTurn = (indexOne, indexTwo) => {
         cards[indexOne].style.visibility = 'hidden'
         cards[indexTwo].style.visibility = 'hidden'
     }else{
+        //Cards are not the same
         setTimeout(() => {
             cards[indexOne].lastChild.innerHTML = ''
             cards[indexTwo].lastChild.innerHTML = ''
@@ -103,12 +106,16 @@ const endTurn = (indexOne, indexTwo) => {
 
         cards[indexOne].classList.remove('flip')
         cards[indexTwo].classList.remove('flip')
+
+        p1turn = !p1turn
+        p1turn ? turn.textContent = 'Player One' : turn.textContent = 'Player Two'
+        p1turn ? turn.style.color = 'blue' : turn.style.color = 'red'
     }
 
     // Check end game condition
     if (playerOneScore + playerTwoScore >= cards.length/2) {
         if (playerOneScore === playerTwoScore) {
-            winner.textContent = 'Everyone'}
+            winner.textContent = 'Everybody'}
         else {
             playerOneScore > playerTwoScore ? winner.textContent = 'Player One' : winner.textContent = 'Player Two' }
 
@@ -116,8 +123,6 @@ const endTurn = (indexOne, indexTwo) => {
     }
 
     openCardIndex = -1
-    p1turn = !p1turn
-    p1turn ? turn.textContent = 'Player One' : turn.textContent = 'Player Two'
 
     gridContainer.style.pointerEvents = 'auto'
 }
